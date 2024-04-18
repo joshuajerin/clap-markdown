@@ -269,9 +269,10 @@ fn build_command_markdown(
                     None => String::new(),
                 }
             )?;
+            writeln!(buffer, "<br />\n")?;
         }
 
-        write!(buffer, "\n\n\n\n\n")?;
+        write!(buffer, "\n")?;
     }
 
     //----------------------------------
