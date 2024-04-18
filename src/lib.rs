@@ -60,8 +60,6 @@ fn write_help_markdown(buffer: &mut String, command: &clap::Command) {
         None => format!("`{}`", command.get_name()),
     };
 
-    writeln!(buffer, "# Command-Line Help for {title_name}\n").unwrap();
-
     writeln!(
         buffer,
         "This document contains the help content for the `{}` command-line program.\n",
@@ -91,14 +89,6 @@ fn write_help_markdown(buffer: &mut String, command: &clap::Command) {
     //-----------------
     // Write the footer
     //-----------------
-
-    write!(buffer, r#"<hr/>
-
-<small><i>
-    This document was generated automatically by
-    <a href="https://crates.io/crates/clap-markdown"><code>clap-markdown</code></a>.
-</i></small>
-"#).unwrap();
 }
 
 fn build_table_of_contents_markdown(
@@ -281,7 +271,7 @@ fn build_command_markdown(
             )?;
         }
 
-        write!(buffer, "\n")?;
+        write!(buffer, "\n\n\n\n\n")?;
     }
 
     //----------------------------------
