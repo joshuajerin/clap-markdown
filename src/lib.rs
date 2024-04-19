@@ -233,8 +233,8 @@ fn build_command_markdown(
 
     writeln!(
         buffer,
-        "**Usage:** bash```
-        {}{}
+        "**Usage:** \n ```bash \n
+        {}{} \n
         ```\n",
         if parent_command_path.is_empty() {
             String::new()
@@ -314,6 +314,7 @@ fn build_command_markdown(
     // Recurse to write subcommands
     //----------------------------------
 
+    write!(buffer, "<br />")?;
     // Include extra space between commands. This is purely for the benefit of
     // anyone reading the source .md file.
     write!(buffer, "\n\n")?;
