@@ -233,7 +233,7 @@ fn build_command_markdown(
 
     writeln!(
         buffer,
-        "**Usage:** \n ```bash \n
+        "**Usage:** \n ```bash
         {}{} \n
         ```\n",
         if parent_command_path.is_empty() {
@@ -271,7 +271,6 @@ fn build_command_markdown(
                     None => String::new(),
                 }
             )?;
-            writeln!(buffer, "<br />\n")?;
         }
 
         write!(buffer, "\n")?;
