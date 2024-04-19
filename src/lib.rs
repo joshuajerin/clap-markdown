@@ -113,7 +113,7 @@ fn build_table_of_contents_markdown(
 
     writeln!(
         buffer,
-        "* [{}](## {})",
+        "* [{}](#{})",
         command_path.join(" "),
         command_path.join("-"),
     )?;
@@ -234,8 +234,8 @@ fn build_command_markdown(
     writeln!(
         buffer,
         "**Usage:** \n ```bash
-        {}{} \n
-        ```\n",
+{}{}
+```\n",
         if parent_command_path.is_empty() {
             String::new()
         } else {
