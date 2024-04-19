@@ -113,7 +113,7 @@ fn build_table_of_contents_markdown(
 
     writeln!(
         buffer,
-        "* [`{}`↴](#{})",
+        "* [bash```{}```↴](#{})",
         command_path.join(" "),
         command_path.join("-"),
     )?;
@@ -215,7 +215,7 @@ fn build_command_markdown(
 
     writeln!(
         buffer,
-        "{} `{}`\n",
+        "{} ```bash{}```\n",
         // "#".repeat(depth + 1),
         "##",
         command_path.join(" "),
@@ -262,7 +262,7 @@ fn build_command_markdown(
 
             writeln!(
                 buffer,
-                "* `{}` — {}",
+                "* ```bash{}``` — {}",
                 subcommand.get_name(),
                 match subcommand.get_about() {
                     Some(about) => about.to_string(),
