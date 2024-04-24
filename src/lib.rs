@@ -62,7 +62,7 @@ fn write_help_markdown(buffer: &mut String, command: &clap::Command) {
 
     writeln!(
         buffer,
-        "This document contains the help content for the `{}` command-line program.\n",
+        "This comprehensive guide is your resource for understanding and utilizing the `{}` CLI, which offers powerful tools for managing your instance environments. Below, you'll find complete instructions on how to use each command, alongside options and subcommands to tailor your operations precisely to your needs.\n",
         command.get_name()
     ).unwrap();
 
