@@ -55,14 +55,23 @@ fn write_help_markdown(buffer: &mut String, command: &clap::Command) {
     // Write the document title
     //----------------------------------
 
-    let title_name = match command.get_display_name() {
+    /*let title_name = match command.get_display_name() {
         Some(display_name) => display_name.to_owned(),
         None => format!("`{}`", command.get_name()),
-    };
+    };*/
 
     writeln!(
         buffer,
-        "This document contains the help content for the `{}` command-line program.\n",
+        "---
+title: Reference
+sideBarTitle: Reference
+uppercaseParent: true
+---"
+    ).unwrap();
+
+    writeln!(
+        buffer,
+        "This comprehensive guide is your resource for understanding and utilizing the {} CLI, which offers powerful tools for managing your instance environments. Below, you'll find complete instructions on how to use each command, alongside options and subcommands to tailor your operations precisely to your needs.\n",
         command.get_name()
     ).unwrap();
 
@@ -113,7 +122,7 @@ fn build_table_of_contents_markdown(
 
     writeln!(
         buffer,
-        "* [`{}`↴](#{})",
+        "* [{}](#{})",
         command_path.join(" "),
         command_path.join("-"),
     )?;
@@ -215,7 +224,7 @@ fn build_command_markdown(
 
     writeln!(
         buffer,
-        "{} `{}`\n",
+        "{} {}\n",
         // "#".repeat(depth + 1),
         "##",
         command_path.join(" "),
@@ -233,7 +242,9 @@ fn build_command_markdown(
 
     writeln!(
         buffer,
-        "**Usage:** `{}{}`\n",
+        "**Usage:**\n ```bash
+{}{}
+```\n",
         if parent_command_path.is_empty() {
             String::new()
         } else {
@@ -253,7 +264,7 @@ fn build_command_markdown(
     //----------------------------------
 
     if command.get_subcommands().next().is_some() {
-        writeln!(buffer, "###### **Subcommands:**\n")?;
+        writeln!(buffer, "**Subcommands:**\n")?;
 
         for subcommand in command.get_subcommands() {
             if subcommand.is_hide_set() {
@@ -271,7 +282,7 @@ fn build_command_markdown(
             )?;
         }
 
-        write!(buffer, "\n\n\n\n\n")?;
+        write!(buffer, "\n")?;
     }
 
     //----------------------------------
@@ -298,7 +309,7 @@ fn build_command_markdown(
         .collect();
 
     if !non_pos.is_empty() {
-        writeln!(buffer, "###### **Options:**\n")?;
+        writeln!(buffer, "**Options:**\n")?;
 
         for arg in non_pos {
             write_arg_markdown(buffer, arg)?;
@@ -311,6 +322,7 @@ fn build_command_markdown(
     // Recurse to write subcommands
     //----------------------------------
 
+    write!(buffer, "<br />")?;
     // Include extra space between commands. This is purely for the benefit of
     // anyone reading the source .md file.
     write!(buffer, "\n\n")?;
