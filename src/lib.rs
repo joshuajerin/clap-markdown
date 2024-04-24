@@ -55,10 +55,19 @@ fn write_help_markdown(buffer: &mut String, command: &clap::Command) {
     // Write the document title
     //----------------------------------
 
-    let title_name = match command.get_display_name() {
+    /*let title_name = match command.get_display_name() {
         Some(display_name) => display_name.to_owned(),
         None => format!("`{}`", command.get_name()),
-    };
+    };*/
+
+    writeln!(
+        buffer,
+        "---
+title: Reference
+sideBarTitle: Reference
+uppercaseParent: true
+---"
+    ).unwrap();
 
     writeln!(
         buffer,
@@ -233,7 +242,7 @@ fn build_command_markdown(
 
     writeln!(
         buffer,
-        "**Usage:** \n ```bash
+        "**Usage:**\n ```bash
 {}{}
 ```\n",
         if parent_command_path.is_empty() {
