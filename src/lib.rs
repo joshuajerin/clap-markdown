@@ -71,7 +71,7 @@ uppercaseParent: true
 
     writeln!(
         buffer,
-        "This comprehensive guide is your resource for understanding and utilizing the `{}` CLI, which offers powerful tools for managing your instance environments. Below, you'll find complete instructions on how to use each command, alongside options and subcommands to tailor your operations precisely to your needs.\n",
+        "This comprehensive guide is your resource for understanding and utilizing the {} CLI, which offers powerful tools for managing your instance environments. Below, you'll find complete instructions on how to use each command, alongside options and subcommands to tailor your operations precisely to your needs.\n",
         command.get_name()
     ).unwrap();
 
